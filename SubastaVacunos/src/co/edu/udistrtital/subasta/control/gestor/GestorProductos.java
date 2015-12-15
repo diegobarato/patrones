@@ -33,8 +33,7 @@ public class GestorProductos {
 		producto.setPropietario(usuarioDAO.getUsuario(Integer.parseInt(propietario))); 
 		producto.setIdProducto(vacunoDAO.getSiguienteCodigoProducto()); 
 		vacunoDAO.adicionarProducto(producto);
-		//TODO: Categorizar producto
-		
+		vacunoDAO.categorizarProducto(producto, categoria);		
 	}
 	
 	public List<ComboItemDTO> getCategorias(){

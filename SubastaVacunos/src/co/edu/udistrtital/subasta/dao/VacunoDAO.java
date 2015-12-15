@@ -39,14 +39,19 @@ public class VacunoDAO {
 		}
 	}
 	
+	public Producto getProducto(int codigo){
+		return productos.get(codigo-1);
+	}
+	
+	public void categorizarProducto(Producto producto, String nombreCategoria){
+		Categoria categoria = buscarCategoria(nombreCategoria);
+		categoria.getCatalogos().add(producto);
+	}
+	
 	public void adicionarCategoria(String nombreCategoria){
 		Categoria categoria = new Categoria();
 		categoria.setNombre(nombreCategoria);
 		categorias.add(categoria);
-	}
-	
-	public Producto getProducto(int codigo){
-		return productos.get(codigo-1);
 	}
 	
 	public int getSiguienteCodigoProducto(){
@@ -55,6 +60,16 @@ public class VacunoDAO {
 	
 	public int getMaximoCodigoProducto(){
 		return productos.size()+1;
+	}
+	
+	private Categoria buscarCategoria(String nombreCategoria){
+		Iterator<Categoria> categoriasIt = categorias.iterator();
+		while (categoriasIt.hasNext()) {
+			Categoria categoria = (Categoria) categoriasIt.next();
+			if(categoria.getNombre().equals(nombreCategoria))
+				return categoria;
+		}
+		return null;
 	}
 	
 }
