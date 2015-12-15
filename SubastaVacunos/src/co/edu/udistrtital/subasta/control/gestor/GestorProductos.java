@@ -29,8 +29,9 @@ public class GestorProductos {
 		Producto producto = new Vacuno(); //TODO: Fabrica de productos
 		producto.setNombre(nombreProducto);
 		producto.setPrecio(precio);
-//		producto.setPropietario(propietario); //TODO: Buscar el usuario propietario
-		producto.setIdProducto(0); //TODO: identificador de producto
+		producto.setPropietario(usuarioDAO.getUsuario(Integer.parseInt(propietario))); 
+		producto.setIdProducto(vacunoDAO.getSiguienteCodigoProducto()); 
+		vacunoDAO.adicionarProducto(producto);
 		//TODO: Categorizar producto
 		
 	}

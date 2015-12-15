@@ -30,7 +30,19 @@ public class VacunoDAO {
 	}
 	
 	public void adicionarProducto(Producto producto){
-		
+		productos.add(producto);
+	}
+	
+	public Producto getProducto(int codigo){
+		return productos.get(codigo-1);
+	}
+	
+	public int getSiguienteCodigoProducto(){
+		return getMaximoCodigoProducto()+1;
+	}
+	
+	public int getMaximoCodigoProducto(){
+		return productos.size()+1;
 	}
 	
 }
