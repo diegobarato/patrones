@@ -11,7 +11,9 @@ import javax.swing.border.TitledBorder;
 
 import co.edu.udistrtital.subasta.control.dto.ComboItemDTO;
 import co.edu.udistrtital.subasta.control.gestor.GestorProductos;
+import co.edu.udistrtital.subasta.control.gestor.GestorSubastas;
 import co.edu.udistrtital.subasta.control.gestor.GestorUsuarios;
+import co.edu.udistrtital.subasta.control.peticiones.PeticionCrearPuja;
 import co.edu.udistrtital.subasta.modelo.catalogo.Categoria;
 
 import javax.swing.JLabel;
@@ -26,6 +28,7 @@ public class CrearSemoviente extends JDialog {
 
 	private GestorProductos gestorProductos;
 	private GestorUsuarios gestorUsuarios;
+	private GestorSubastas gestorSubastas;
 	
 	private final JPanel contentPanel = new JPanel();
 	private JTextField nombre;
@@ -113,6 +116,13 @@ public class CrearSemoviente extends JDialog {
 			btnIniciarPuja = new JButton("Iniciar puja");
 			btnIniciarPuja.setEnabled(false);
 			buttonPane.add(btnIniciarPuja);
+			btnIniciarPuja.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					gestorSubastas = new GestorSubastas(idProducto);
+					gestorSubastas.setPeticion(new PeticionCrearPuja());
+					gestorSubastas.procesarPeticion();
+				}
+			});
 			
 			cancelButton = new JButton("Cancel");
 			cancelButton.setActionCommand("Cancel");

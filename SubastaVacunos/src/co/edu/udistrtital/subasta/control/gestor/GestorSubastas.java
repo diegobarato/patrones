@@ -18,14 +18,16 @@ public class GestorSubastas {
 	
 	private VacunoDAO productoDAO;
 	
-	public GestorSubastas() {
+	private Producto producto;
+	
+	public GestorSubastas(int idProducto) {
 		subastaDAO = SubastaDAO.getInstancia();
 		productoDAO = VacunoDAO.getInstancia();
+		producto = productoDAO.getProducto(idProducto);
 	}
 	
-	public void crearSubasta(String litigante, Double precioInicial, Date fechaInicio, Date fechaTerminacion, int codigoProducto){
-		Producto producto = productoDAO.getProducto(codigoProducto);
-		Subasta subasta = new Puja(precioInicial, fechaInicio, fechaTerminacion, producto);
+	public void crearSubasta(Double precioInicial, Date fechaInicio, Date fechaTerminacion){
+		Subasta subasta = new Puja(precioInicial, fechaInicio, fechaTerminacion, this.producto);
 		subastaDAO.adicionarSubasta(subasta);
 	}
 	
