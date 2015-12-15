@@ -7,25 +7,29 @@ package co.edu.udistrtital.subasta.control.dto;
  */
 public class ComboItemDTO {
 
-	private String id;
+	private String key;
 	
-	private String nombre;
+	private String value;
 
-	public String getId() {
-		return id;
+	public String getKey() {
+		return key;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setKey(String key) {
+		this.key = key;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getValue() {
+		return value;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setValue(String value) {
+		this.value = value;
 	}
-	
+
+	@Override
+	public String toString() {
+		return value;
+	}
 	
 }

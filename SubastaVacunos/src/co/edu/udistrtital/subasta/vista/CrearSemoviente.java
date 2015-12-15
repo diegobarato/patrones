@@ -8,36 +8,31 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import co.edu.udistrtital.subasta.control.dto.ComboItemDTO;
+import co.edu.udistrtital.subasta.control.gestor.GestorProductos;
+
 import javax.swing.JLabel;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.awt.event.ActionEvent;
 
 public class CrearSemoviente extends JDialog {
 
+	private GestorProductos gestorProductos;
+	
 	private final JPanel contentPanel = new JPanel();
 	private JTextField nombre;
 	private JTextField precio;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			CrearSemoviente dialog = new CrearSemoviente();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Create the dialog.
 	 */
 	public CrearSemoviente() {
+		gestorProductos = new GestorProductos("VACUNO");
 		setTitle("Crear semoviente");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -70,12 +65,22 @@ public class CrearSemoviente extends JDialog {
 			panel.add(lblNewLabel_2);
 			
 			JComboBox categoria = new JComboBox();
+			Iterator<ComboItemDTO> categoriaItems= gestorProductos.getCategorias().iterator();
+			while (categoriaItems.hasNext()) {
+				ComboItemDTO comboItemDTO = (ComboItemDTO) categoriaItems.next();
+				categoria.addItem(comboItemDTO);
+			}
 			panel.add(categoria);
 			
 			JLabel lblNewLabel_3 = new JLabel("Propietario");
 			panel.add(lblNewLabel_3);
 			
 			JComboBox propietario = new JComboBox();
+			Iterator<String> propietariosItems= gestorProductos.getUsuarios().iterator();
+			while (propietariosItems.hasNext()) {
+				String propietarioItem = (String) propietariosItems.next();
+				propietario.addItem(propietarioItem);
+			}
 			panel.add(propietario);
 		}
 		{

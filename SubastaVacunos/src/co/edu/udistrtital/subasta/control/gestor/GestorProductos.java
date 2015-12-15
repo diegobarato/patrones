@@ -42,11 +42,15 @@ public class GestorProductos {
 		while (categorias.hasNext()) {
 			Categoria categoria = (Categoria) categorias.next();
 			ComboItemDTO item = new ComboItemDTO();
-			item.setId(categoria.getNombre());
-			item.setNombre(categoria.getNombre());
+			item.setKey(categoria.getNombre());
+			item.setValue(categoria.getNombre());
 			categoriasAMostrar.add(item);
 		}
 		return categoriasAMostrar;
+	}
+	
+	public List<String> getUsuarios(){
+		return usuarioDAO.getNombresUsuarios();
 	}
 	
 	public void procesarPeticion(){

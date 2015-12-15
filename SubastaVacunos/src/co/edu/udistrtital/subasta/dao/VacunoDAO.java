@@ -33,6 +33,12 @@ public class VacunoDAO {
 		productos.add(producto);
 	}
 	
+	public void adicionarCategoria(String nombreCategoria){
+		Categoria categoria = new Categoria();
+		categoria.setNombre(nombreCategoria);
+		categorias.add(categoria);
+	}
+	
 	public Producto getProducto(int codigo){
 		return productos.get(codigo-1);
 	}

@@ -13,7 +13,7 @@ public class UsuarioDAO {
 	private List<Usuario> usuarios;
 	
 	private UsuarioDAO(){
-		
+		usuarios = new ArrayList<Usuario>();
 	}
 	
 	public static UsuarioDAO getInstancia(){
@@ -22,7 +22,10 @@ public class UsuarioDAO {
 		return instancia;
 	}
 	
-	public void adicionarUsuario(Usuario usuario){
+	public void adicionarUsuario(String nombreUsuario){
+		Usuario usuario = new Usuario();
+		usuario.setNombre(nombreUsuario);
+		usuario.setCodigo(getSiguienteCodigoUsuario());
 		usuarios.add(usuario);
 	}
 	
