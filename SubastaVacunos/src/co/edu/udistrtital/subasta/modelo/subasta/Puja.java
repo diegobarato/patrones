@@ -1,43 +1,64 @@
 package co.edu.udistrtital.subasta.modelo.subasta;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class Puja {
-	
-	private String litigante;
-	
-	private BigDecimal valorInicial;
-	
-	private Date horaInicial;
-	
-	private Date horaFinal;
+import co.edu.udistrtital.subasta.modelo.catalogo.Producto;
 
-	public Puja(String litigante, BigDecimal valorInicial, Date horaInicial, Date horaFinal) {
+public class Puja extends Subasta {
+	
+	private Integer idPuja;
+	
+	private Double precioInicial;
+	
+	private Date fechaInicio;
+	
+	private Date fechaTerminacion;
+	
+	private Producto producto;
+	
+	private List<Oferta> ofertas = new ArrayList<>();
+	
+	public Puja(Double precioInicial, Date fechaInicio, Date fechaTerminacion, Producto producto) {
 		super();
-		this.litigante = litigante;
-		this.valorInicial = valorInicial;
-		this.horaInicial = horaInicial;
-		this.horaFinal = horaFinal;
+		this.precioInicial = precioInicial;
+		this.fechaInicio = fechaInicio;
+		this.fechaTerminacion = fechaTerminacion;
+		this.producto = producto;
 	}
 
-	public String getLitigante() {
-		return litigante;
+	public void adicionarOferta(Oferta oferta){
+		ofertas.add(oferta);
+		this.notificar();
 	}
 
-	public BigDecimal getValorInicial() {
-		return valorInicial;
-	}
-
-	public Date getHoraInicial() {
-		return horaInicial;
-	}
-
-	public Date getHoraFinal() {
-		return horaFinal;
+	public Oferta getUltimaOferta() {
+		return ofertas.get(ofertas.size()-1);
 	}
 	
-	
-	
+	public List<Oferta> getOfertas() {
+		return ofertas;
+	}
+
+	public Integer getIdPuja() {
+		return idPuja;
+	}
+
+	public Double getPrecioInicial() {
+		return precioInicial;
+	}
+
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public Date getFechaTerminacion() {
+		return fechaTerminacion;
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
 
 }

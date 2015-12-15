@@ -1,39 +1,40 @@
 package co.edu.udistrtital.subasta.modelo.subasta;
 
-import java.math.BigDecimal;
 import java.util.Date;
+
+import co.edu.udistrtital.subasta.modelo.usuario.Usuario;
 
 public class Oferta {
 	
-	private String oferente; //TODO: Enlazar con clase
+	private Usuario oferente; 
 	
-	private BigDecimal valor;
+	private Double precio;
 	
-	private Date fecha;
+	private Date tiempoOferta;
 	
 	public Oferta() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Oferta(String oferente, BigDecimal valor, Date fecha) {
+	public Oferta(Usuario oferente, Double precio, Date tiempoOferta) {
 		super();
 		this.oferente = oferente;
-		this.valor = valor;
-		this.fecha = fecha;
+		this.precio = precio;
+		this.tiempoOferta = tiempoOferta;
 	}
 
-	public String getOferente() {
+	public Usuario getOferente() {
 		return oferente;
 	}
 
-	public BigDecimal getValor() {
-		return valor;
+	public Double getPrecio() {
+		return precio;
 	}
 
-	public Date getFecha() {
-		return fecha;
+	public Date getTiempoOferta() {
+		return tiempoOferta;
 	}
-	
+
 	
 
 }

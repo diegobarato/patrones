@@ -1,29 +1,34 @@
 package co.edu.udistrtital.subasta.modelo.subasta;
 
-import co.edu.udistrtital.subasta.observer.Observable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Subasta extends Observable {
+import co.edu.udistrtital.subasta.observer.Observador;
+
+public abstract class Subasta {
 	
-	public Subasta(Puja puja) {
-		this.puja = puja;
+private List<Observador> observadores = new ArrayList<>();
+	
+	public synchronized void agregarObservador(Observador observador){
+		if(!observadores.contains(observador)){
+			observadores.add(observador);
+		}
 	}
 	
-	private Puja puja;
+	public synchronized void removerObservador(Observador observador){
+		observadores.remove(observador);
+	}
 	
-	private Oferta ultimaOferta;
+	public void notificar(){
+		for(Observador observador: observadores){
+			observador.actualizar(this);
+		}
+	}
+		
+
 	
 		
-	public void guardarOferta(Oferta oferta){
-		this.ultimaOferta = oferta;
-		this.notificar();
-	}
 
-	public Oferta getUltimaOferta() {
-		return ultimaOferta;
-	}
 	
-	public Puja getPuja() {
-		return puja;
-	}
 
 }
