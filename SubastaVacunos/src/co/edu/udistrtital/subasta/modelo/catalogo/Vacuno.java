@@ -4,7 +4,9 @@ public class Vacuno extends Producto {
 
 	@Override
 	public void imprimirCatalogo() {
-		// TODO Auto-generated method stub
+		System.out.print("    ID: "+idProducto);
+		System.out.print("    Nombre: "+nombre);
+		System.out.println("    Precio: "+precio);
 
 	}
 

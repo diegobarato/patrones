@@ -9,15 +9,15 @@ import co.edu.udistrtital.subasta.modelo.usuario.Usuario;
  */
 public abstract class Producto extends Catalogo {
 
-	private int idProducto;
+	protected int idProducto;
 	
-	private String nombre;
+	protected String nombre;
 	
-	private double precio;
+	protected double precio;
 	
-	private Usuario propietario;
+	protected Usuario propietario;
 	
-	private IEstadoProducto estado;
+	protected IEstadoProducto estado;
 
 	public int getIdProducto() {
 		return idProducto;

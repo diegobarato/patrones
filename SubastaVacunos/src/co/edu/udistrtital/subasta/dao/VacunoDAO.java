@@ -32,11 +32,6 @@ public class VacunoDAO {
 	
 	public void adicionarProducto(Producto producto){
 		productos.add(producto);
-		
-		for (Iterator iterator = productos.iterator(); iterator.hasNext();) {
-			Producto producto1 = (Producto) iterator.next();
-			System.out.println("Producto: "+producto1.getNombre());
-		}
 	}
 	
 	public Producto getProducto(int codigo){
@@ -61,7 +56,7 @@ public class VacunoDAO {
 	public int getMaximoCodigoProducto(){
 		return productos.size();
 	}
-	
+
 	private Categoria buscarCategoria(String nombreCategoria){
 		Iterator<Categoria> categoriasIt = categorias.iterator();
 		while (categoriasIt.hasNext()) {
