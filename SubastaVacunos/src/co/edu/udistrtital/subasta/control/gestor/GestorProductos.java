@@ -33,7 +33,11 @@ public class GestorProductos {
 		producto.setPropietario(usuarioDAO.getUsuario(Integer.parseInt(propietario))); 
 		producto.setIdProducto(vacunoDAO.getSiguienteCodigoProducto()); 
 		vacunoDAO.adicionarProducto(producto);
-		vacunoDAO.categorizarProducto(producto, categoria);		
+		vacunoDAO.categorizarProducto(producto, categoria);	
+		
+		BuscarEntidad buscarEntidad = new BuscarEntidad();
+		buscarEntidad.imprimirCatalogo();
+		
 		return producto.getIdProducto();
 	}
 	

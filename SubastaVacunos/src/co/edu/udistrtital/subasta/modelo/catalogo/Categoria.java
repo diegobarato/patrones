@@ -4,6 +4,7 @@
 package co.edu.udistrtital.subasta.modelo.catalogo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -33,8 +34,14 @@ public class Categoria extends Catalogo {
 	 */
 	@Override
 	public void imprimirCatalogo() {
-		// TODO Auto-generated method stub
-
+		Iterator<Catalogo> catalogoIt = catalogos.iterator();
+		if(catalogoIt.hasNext()){
+			System.out.println("Categoría: "+nombre);
+			while (catalogoIt.hasNext()) {
+				Catalogo catalogo = (Catalogo) catalogoIt.next();
+				catalogo.imprimirCatalogo();
+			}
+		}
 	}
 
 	public List<Catalogo> getCatalogos() {
