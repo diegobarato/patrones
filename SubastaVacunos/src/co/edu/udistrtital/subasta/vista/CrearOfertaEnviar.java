@@ -12,10 +12,14 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.border.TitledBorder;
 
+import co.edu.udistrtital.subasta.control.dto.ComboItemDTO;
 import co.edu.udistrtital.subasta.control.gestor.BuscarEntidad;
 import co.edu.udistrtital.subasta.control.gestor.GestorProductos;
+import co.edu.udistrtital.subasta.control.gestor.GestorSubastas;
+import co.edu.udistrtital.subasta.control.gestor.GestorUsuarios;
 
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
@@ -26,6 +30,10 @@ public class CrearOfertaEnviar extends JDialog {
 	private int idProducto;
 	private GestorProductos gestorProductos;
 	private BuscarEntidad buscarEntidad;
+	private GestorUsuarios gestorUsuarios;
+	private GestorSubastas gestorSubastas;
+	JComboBox comboBox;
+	JLabel resultado;
 	
 	/**
 	 * Create the dialog.
@@ -33,7 +41,10 @@ public class CrearOfertaEnviar extends JDialog {
 	public CrearOfertaEnviar(int idProducto) {
 		this.idProducto = idProducto;
 		gestorProductos = new GestorProductos("VACUNO");
-		buscarEntidad.getNombreProducto(idProducto);
+		gestorUsuarios = new GestorUsuarios();
+		gestorSubastas = new GestorSubastas();
+		buscarEntidad = new BuscarEntidad();
+		String nombreProducto = buscarEntidad.getNombreProducto(idProducto);
 		
 		setBounds(100, 100, 371, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -56,7 +67,7 @@ public class CrearOfertaEnviar extends JDialog {
 			contentPanel.add(lblNewLabel_1);
 		}
 		{
-			JLabel nombreSemoviente = new JLabel("  ");
+			JLabel nombreSemoviente = new JLabel(nombreProducto);
 			nombreSemoviente.setBounds(149, 48, 167, 14);
 			contentPanel.add(nombreSemoviente);
 		}
@@ -77,8 +88,13 @@ public class CrearOfertaEnviar extends JDialog {
 			contentPanel.add(lblLitigante);
 		}
 		{
-			JComboBox comboBox = new JComboBox();
+			comboBox = new JComboBox();
 			comboBox.setBounds(149, 125, 167, 20);
+			Iterator<ComboItemDTO> usuarioItems= gestorUsuarios.getUsuariosSinPropietario(idProducto).iterator();
+			while (usuarioItems.hasNext()) {
+				ComboItemDTO usuarioItem = (ComboItemDTO) usuarioItems.next();
+				comboBox.addItem(usuarioItem);
+			}
 			contentPanel.add(comboBox);
 		}
 		{
@@ -87,7 +103,7 @@ public class CrearOfertaEnviar extends JDialog {
 			panel.setBounds(10, 178, 335, 39);
 			contentPanel.add(panel);
 			{
-				JLabel resultado = new JLabel("  ");
+				resultado = new JLabel("  ");
 				panel.add(resultado);
 			}
 		}
@@ -99,6 +115,8 @@ public class CrearOfertaEnviar extends JDialog {
 				JButton okButton = new JButton("Ofertar");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						String respuesta = gestorSubastas.ofertar(Integer.parseInt(((ComboItemDTO)comboBox.getSelectedItem()).getKey()), Double.parseDouble(textField.getText()),idProducto);
+						resultado.setText(respuesta);
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -109,6 +127,7 @@ public class CrearOfertaEnviar extends JDialog {
 				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						dispose();
 					}
 				});
 				cancelButton.setActionCommand("Cancel");

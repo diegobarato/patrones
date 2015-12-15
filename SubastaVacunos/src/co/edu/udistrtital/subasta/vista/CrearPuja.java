@@ -24,12 +24,14 @@ public class CrearPuja extends JDialog {
 	private JTextField precioInicial;
 	private JTextField horaInicio;
 	private JTextField horaTerminacion;
+	private int idProducto;
 
 	/**
 	 * Create the dialog.
 	 */
-	public CrearPuja() {
-		gestorSubastas = new GestorSubastas(1);
+	public CrearPuja(int idProducto) {
+		this.idProducto = idProducto;
+		gestorSubastas = new GestorSubastas();
 		setTitle("Crear puja");
 		setBounds(100, 100, 339, 230);
 		getContentPane().setLayout(new BorderLayout());
@@ -78,15 +80,8 @@ public class CrearPuja extends JDialog {
 				JButton okButton = new JButton("Crear Puja");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						String[] inicio = horaInicio.getText().split(":");
-						String[] fin = horaTerminacion.getText().split(":");
-						Calendar calInicio = Calendar.getInstance();
-						calInicio.set(Calendar.HOUR_OF_DAY, Integer.parseInt(inicio[0]));
-						calInicio.set(Calendar.MINUTE, Integer.parseInt(inicio[1]));
-						Calendar calFin = Calendar.getInstance();
-						calFin.set(Calendar.HOUR_OF_DAY, Integer.parseInt(fin[0]));
-						calFin.set(Calendar.MINUTE, Integer.parseInt(fin[1]));
-						gestorSubastas.crearSubasta( Double.valueOf(precioInicial.getText()), calInicio.getTime(), calFin.getTime());
+
+						gestorSubastas.crearSubasta( idProducto, Double.valueOf(precioInicial.getText()), horaInicio.getText(), horaTerminacion.getText());
 						dispose();
 					}
 				});

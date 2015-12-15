@@ -1,6 +1,7 @@
 package co.edu.udistrtital.subasta.control.gestor;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -26,21 +27,32 @@ public class GestorSubastas {
 	
 	private UsuarioDAO usuarioDAO;
 	
-	private Producto producto;
-	
-	public GestorSubastas(int idProducto) {
-		this();
-		producto = productoDAO.getProducto(idProducto);
-	}
-	
 	public GestorSubastas() {
 		subastaDAO = SubastaDAO.getInstancia();
 		productoDAO = VacunoDAO.getInstancia();
 		usuarioDAO = UsuarioDAO.getInstancia();
 	}
 
-	public void crearSubasta(Double precioInicial, Date fechaInicio, Date fechaTerminacion){
-		Subasta subasta = new Puja(subastaDAO.getIDSubasta(),precioInicial, fechaInicio, fechaTerminacion, this.producto);
+	public void crearSubasta(int idProducto, Double precioInicial, String horaInicio, String horaTerminacion){
+		Producto producto = productoDAO.getProducto(idProducto);
+		String[] inicio = horaInicio.split(":");
+		String[] fin = horaTerminacion.split(":");
+		Calendar calInicio = Calendar.getInstance();
+		calInicio.set(Calendar.HOUR_OF_DAY, Integer.parseInt(inicio[0]));
+		if(inicio.length!=2){
+			calInicio.set(Calendar.MINUTE, 0);
+		}else{
+			calInicio.set(Calendar.MINUTE, Integer.parseInt(inicio[1]));
+		}
+		
+		Calendar calFin = Calendar.getInstance();
+		calFin.set(Calendar.HOUR_OF_DAY, Integer.parseInt(fin[0]));
+		if(fin.length!=2){
+			calFin.set(Calendar.MINUTE, 0);
+		}else{
+			calFin.set(Calendar.MINUTE, Integer.parseInt(fin[1]));
+		}
+		Subasta subasta = new Puja(subastaDAO.getIDSubasta(),precioInicial, calInicio.getTime(), calFin.getTime(), producto);
 		subastaDAO.adicionarSubasta(subasta);
 	}
 	
@@ -101,8 +113,5 @@ public class GestorSubastas {
 		this.peticion = peticion;
 	}
 	
-	public void setProducto(Producto producto) {
-		this.producto = producto;
-	}
 
 }

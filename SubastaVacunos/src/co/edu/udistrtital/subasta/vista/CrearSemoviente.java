@@ -118,8 +118,8 @@ public class CrearSemoviente extends JDialog {
 			buttonPane.add(btnIniciarPuja);
 			btnIniciarPuja.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					gestorSubastas = new GestorSubastas(idProducto);
-					gestorSubastas.setPeticion(new PeticionCrearPuja());
+					gestorSubastas = new GestorSubastas();
+					gestorSubastas.setPeticion(new PeticionCrearPuja(idProducto));
 					gestorSubastas.procesarPeticion();
 				}
 			});
