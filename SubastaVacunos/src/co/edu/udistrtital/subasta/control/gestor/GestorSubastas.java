@@ -54,6 +54,7 @@ public class GestorSubastas {
 		}
 		Subasta subasta = new Puja(subastaDAO.getIDSubasta(),precioInicial, calInicio.getTime(), calFin.getTime(), producto);
 		subastaDAO.adicionarSubasta(subasta);
+		System.out.println("Subasta creada: "+((Puja)subasta).getIdPuja());
 	}
 	
 	public String validarOferta(Puja puja, Oferta oferta){
