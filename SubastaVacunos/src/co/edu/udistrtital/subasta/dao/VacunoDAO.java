@@ -59,7 +59,7 @@ public class VacunoDAO {
 	}
 	
 	public int getMaximoCodigoProducto(){
-		return productos.size()+1;
+		return productos.size();
 	}
 	
 	private Categoria buscarCategoria(String nombreCategoria){
