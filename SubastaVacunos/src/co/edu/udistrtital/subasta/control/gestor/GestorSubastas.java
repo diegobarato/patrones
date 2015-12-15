@@ -51,7 +51,7 @@ public class GestorSubastas {
 			retorno = "La subasta no ha iniciado";
 		}else if(oferta.getPrecio().compareTo(puja.getPrecioInicial())<0){
 			retorno = "El precio de la oferta no es mayor al precio inicial";
-		}else if(puja.getUltimaOferta()!=null && oferta.getPrecio().compareTo(puja.getUltimaOferta().getPrecio())<0){
+		}else if(puja.getUltimaOferta()!=null && oferta.getPrecio().compareTo(puja.getUltimaOferta().getPrecio())<=0){
 			retorno = "El precio de la oferta no es mayor al de la ultima oferta: "+
 					puja.getUltimaOferta().getPrecio();
 		}

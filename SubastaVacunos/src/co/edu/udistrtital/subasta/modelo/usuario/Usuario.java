@@ -17,6 +17,7 @@ public class Usuario extends Persona implements Observador {
 
 	@Override
 	public void actualizar(Subasta subasta) {
+		System.out.println("Notificación para "+this.nombre);
 		System.out.println(subasta.toString());
 		
 	}

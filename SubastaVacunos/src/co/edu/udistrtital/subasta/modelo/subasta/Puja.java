@@ -69,12 +69,12 @@ public class Puja extends Subasta {
 	
 	@Override
 	public String toString() {
-		StringBuffer retorno = new StringBuffer("Ultima Oferta: ");
+		StringBuffer retorno = new StringBuffer("  Ultima Oferta: ");
 		Oferta ultimaOferta = this.getUltimaOferta();
 		retorno.append(ultimaOferta.getPrecio());
 		retorno.append(". Realizada a las: ");
 		retorno.append(ultimaOferta.getTiempoOferta().toString());
-		retorno.append(" por  ");
+		retorno.append(" por ");
 		retorno.append(ultimaOferta.getOferente().getNombre());
 		return retorno.toString();
 	}
