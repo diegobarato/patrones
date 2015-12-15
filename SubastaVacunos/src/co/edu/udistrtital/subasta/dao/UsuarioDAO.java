@@ -53,6 +53,6 @@ public class UsuarioDAO {
 	}
 	
 	public int getMaximoCodigoUsuario(){
-		return usuarios.size()+1;
+		return usuarios.size();
 	}
 }
