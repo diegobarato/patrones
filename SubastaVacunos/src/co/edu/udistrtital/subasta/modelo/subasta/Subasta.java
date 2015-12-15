@@ -20,7 +20,7 @@ private List<Observador> observadores = new ArrayList<>();
 	}
 	
 	public void notificar(){
-		System.out.println("Notificando: "+this.toString());
+		System.out.println("\nNotificando Oferta");
 		for(Observador observador: observadores){
 			observador.actualizar(this);
 		}
