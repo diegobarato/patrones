@@ -1,6 +1,7 @@
 package co.edu.udistrtital.subasta.modelo.catalogo;
 
 import co.edu.udistrtital.subasta.modelo.catalogo.estadoproducto.IEstadoProducto;
+import co.edu.udistrtital.subasta.modelo.usuario.Usuario;
 
 /**
  * @author useche
@@ -14,7 +15,7 @@ public abstract class Producto extends Catalogo {
 	
 	private double precio;
 	
-	private Object propietario;
+	private Usuario propietario;
 	
 	private IEstadoProducto estado;
 
@@ -42,11 +43,11 @@ public abstract class Producto extends Catalogo {
 		this.precio = precio;
 	}
 
-	public Object getPropietario() {
+	public Usuario getPropietario() {
 		return propietario;
 	}
 
-	public void setPropietario(Object propietario) {
+	public void setPropietario(Usuario propietario) {
 		this.propietario = propietario;
 	}
 

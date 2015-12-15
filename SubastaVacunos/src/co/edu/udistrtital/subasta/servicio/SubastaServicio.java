@@ -3,9 +3,9 @@ package co.edu.udistrtital.subasta.servicio;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import co.edu.udistrtital.subasta.entidad.Oferta;
-import co.edu.udistrtital.subasta.entidad.Puja;
-import co.edu.udistrtital.subasta.entidad.Subasta;
+import co.edu.udistrtital.subasta.modelo.subasta.Oferta;
+import co.edu.udistrtital.subasta.modelo.subasta.Puja;
+import co.edu.udistrtital.subasta.modelo.subasta.Subasta;
 
 public class SubastaServicio {
 	

@@ -1,4 +1,4 @@
-package co.edu.udistrtital.subasta.entidad;
+package co.edu.udistrtital.subasta.modelo.subasta;
 
 import co.edu.udistrtital.subasta.observer.Observable;
 

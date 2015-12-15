@@ -1,4 +1,4 @@
-package co.edu.udistrtital.subasta.entidad;
+package co.edu.udistrtital.subasta.modelo.subasta;
 
 import java.math.BigDecimal;
 import java.util.Date;
