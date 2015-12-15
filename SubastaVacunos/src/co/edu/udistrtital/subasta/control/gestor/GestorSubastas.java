@@ -2,6 +2,7 @@ package co.edu.udistrtital.subasta.control.gestor;
 
 import java.util.Date;
 
+import co.edu.udistrtital.subasta.control.peticiones.IEstrategiaPeticion;
 import co.edu.udistrtital.subasta.dao.SubastaDAO;
 import co.edu.udistrtital.subasta.dao.VacunoDAO;
 import co.edu.udistrtital.subasta.modelo.catalogo.Producto;
@@ -10,6 +11,8 @@ import co.edu.udistrtital.subasta.modelo.subasta.Puja;
 import co.edu.udistrtital.subasta.modelo.subasta.Subasta;
 
 public class GestorSubastas {
+	
+	private IEstrategiaPeticion peticion;
 	
 	private SubastaDAO subastaDAO;
 	
@@ -40,7 +43,7 @@ public class GestorSubastas {
 		return retorno;
 	}
 	
-	public String recibirOferta(Oferta oferta, int codigoSubasta){
+	public String ofertar(Oferta oferta, int codigoSubasta){
 		Puja puja = (Puja)subastaDAO.getSubasta(codigoSubasta);
 		String retorno = validarOferta(puja, oferta);
 		if(retorno.equals("")){
@@ -48,6 +51,18 @@ public class GestorSubastas {
 			retorno = "Oferta agregada exitosamente";
 		}
 		return retorno;
+	}
+	
+	public void procesarPeticion(){
+		peticion.procesarPeticion();
+	}
+	
+	public IEstrategiaPeticion getPeticion() {
+		return peticion;
+	}
+
+	public void setPeticion(IEstrategiaPeticion peticion) {
+		this.peticion = peticion;
 	}
 
 }
