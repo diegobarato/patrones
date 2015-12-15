@@ -60,9 +60,11 @@ public class GestorSubastas {
 	
 	public String ofertar(int codigoUsuario, Double precio, int codigoSubasta){
 		Puja puja = (Puja)subastaDAO.getSubasta(codigoSubasta);
-		Oferta oferta = new Oferta(usuarioDAO.getUsuario(codigoUsuario), precio, new Date());
+		Usuario litigante = usuarioDAO.getUsuario(codigoUsuario);
+		Oferta oferta = new Oferta(litigante, precio, new Date());
 		String retorno = validarOferta(puja, oferta);
 		if(retorno.equals("")){
+			puja.agregarObservador(litigante);
 			puja.adicionarOferta(oferta);
 			retorno = "Oferta agregada exitosamente";
 		}

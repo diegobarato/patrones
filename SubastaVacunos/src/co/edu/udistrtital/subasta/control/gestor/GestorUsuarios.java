@@ -7,6 +7,7 @@ import java.util.List;
 import co.edu.udistrtital.subasta.control.dto.ComboItemDTO;
 import co.edu.udistrtital.subasta.control.peticiones.IEstrategiaPeticion;
 import co.edu.udistrtital.subasta.dao.UsuarioDAO;
+import co.edu.udistrtital.subasta.dao.VacunoDAO;
 import co.edu.udistrtital.subasta.modelo.catalogo.Producto;
 import co.edu.udistrtital.subasta.modelo.usuario.Usuario;
 
@@ -14,10 +15,13 @@ public class GestorUsuarios {
 	
 	private UsuarioDAO usuarioDAO;
 	
+	private VacunoDAO productoDAO;
+	
 	private IEstrategiaPeticion peticion;
 	
 	public GestorUsuarios(){
 		usuarioDAO = UsuarioDAO.getInstancia();
+		productoDAO = VacunoDAO.getInstancia();
 	}
 	
 	public List<ComboItemDTO> getUsuarios(){
@@ -33,8 +37,8 @@ public class GestorUsuarios {
 		return usuariosAMostrar;
 	}
 	
-	public List<ComboItemDTO> getUsuariosSinPropietario(Producto producto){
-		
+	public List<ComboItemDTO> getUsuariosSinPropietario(int codProducto){
+		Producto producto = productoDAO.getProducto(codProducto);
 		Iterator<Usuario> usuarios=usuarioDAO.getUsuariosMenosUno(producto.getPropietario()).iterator();
 		List<ComboItemDTO> usuariosAMostrar = new ArrayList<ComboItemDTO>();
 		while (usuarios.hasNext()) {
