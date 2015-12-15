@@ -26,15 +26,15 @@ public class GestorProductos {
 		usuarioDAO = UsuarioDAO.getInstancia();
 	}
 
-	public void crearProducto(String nombreProducto, double precio, String categoria, String propietario){
+	public int crearProducto(String nombreProducto, double precio, String categoria, String propietario){
 		Producto producto = new Vacuno(); //TODO: Fabrica de productos
 		producto.setNombre(nombreProducto);
 		producto.setPrecio(precio);
 		producto.setPropietario(usuarioDAO.getUsuario(Integer.parseInt(propietario))); 
 		producto.setIdProducto(vacunoDAO.getSiguienteCodigoProducto()); 
 		vacunoDAO.adicionarProducto(producto);
-		//TODO: Categorizar producto
-		
+		vacunoDAO.categorizarProducto(producto, categoria);		
+		return producto.getIdProducto();
 	}
 	
 	public List<ComboItemDTO> getCategorias(){
@@ -48,19 +48,6 @@ public class GestorProductos {
 			categoriasAMostrar.add(item);
 		}
 		return categoriasAMostrar;
-	}
-	
-	public List<ComboItemDTO> getUsuarios(){
-		Iterator<Usuario> usuarios=usuarioDAO.getUsuarios().iterator();
-		List<ComboItemDTO> usuariosAMostrar = new ArrayList<ComboItemDTO>();
-		while (usuarios.hasNext()) {
-			Usuario usuario = (Usuario) usuarios.next();
-			ComboItemDTO item = new ComboItemDTO();
-			item.setKey(String.valueOf(usuario.getCodigo()));
-			item.setValue(usuario.getNombre());
-			usuariosAMostrar.add(item);
-		}
-		return usuariosAMostrar;
 	}
 	
 	public void procesarPeticion(){

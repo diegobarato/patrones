@@ -11,6 +11,7 @@ import javax.swing.border.TitledBorder;
 
 import co.edu.udistrtital.subasta.control.dto.ComboItemDTO;
 import co.edu.udistrtital.subasta.control.gestor.GestorProductos;
+import co.edu.udistrtital.subasta.control.gestor.GestorUsuarios;
 import co.edu.udistrtital.subasta.modelo.catalogo.Categoria;
 
 import javax.swing.JLabel;
@@ -24,6 +25,7 @@ import java.awt.event.ActionEvent;
 public class CrearSemoviente extends JDialog {
 
 	private GestorProductos gestorProductos;
+	private GestorUsuarios gestorUsuarios;
 	
 	private final JPanel contentPanel = new JPanel();
 	private JTextField nombre;
@@ -33,12 +35,14 @@ public class CrearSemoviente extends JDialog {
 	private JButton okButton;
 	private JButton btnIniciarPuja;
 	private JButton cancelButton;
+	private int idProducto;
 
 	/**
 	 * Create the dialog.
 	 */
 	public CrearSemoviente() {
 		gestorProductos = new GestorProductos("VACUNO");
+		gestorUsuarios = new GestorUsuarios();
 		setTitle("Crear semoviente");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -82,7 +86,7 @@ public class CrearSemoviente extends JDialog {
 			panel.add(lblNewLabel_3);
 			
 			propietario = new JComboBox();
-			Iterator<ComboItemDTO> propietariosItems= gestorProductos.getUsuarios().iterator();
+			Iterator<ComboItemDTO> propietariosItems= gestorUsuarios.getUsuarios().iterator();
 			while (propietariosItems.hasNext()) {
 				ComboItemDTO propietarioItem = (ComboItemDTO) propietariosItems.next();
 				propietario.addItem(propietarioItem);
@@ -97,7 +101,7 @@ public class CrearSemoviente extends JDialog {
 			okButton = new JButton("Insertar Animal");
 			okButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					gestorProductos.crearProducto(nombre.getText(), Double.parseDouble(precio.getText()), ((ComboItemDTO)categoria.getSelectedItem()).getKey(), ((ComboItemDTO)propietario.getSelectedItem()).getKey());
+					idProducto = gestorProductos.crearProducto(nombre.getText(), Double.parseDouble(precio.getText()), ((ComboItemDTO)categoria.getSelectedItem()).getKey(), ((ComboItemDTO)propietario.getSelectedItem()).getKey());
 					btnIniciarPuja.setEnabled(true);
 					okButton.setEnabled(false);
 				}
