@@ -12,7 +12,6 @@ public class ControlCentral {
 	
 	public ControlCentral(){
 		gestorProductos = new GestorProductos("VACUNO");
-		
 		EventQueue.invokeLater(new InvocarVentana(this));		
 	}
 	
@@ -28,7 +27,6 @@ public class ControlCentral {
 			vista = new VentanaSwing(controlCentral);
 			vista.setGestorProductos(gestorProductos);
 			vista.setVisible(true);
-			
 		}
 		
 	}
