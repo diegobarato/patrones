@@ -37,5 +37,9 @@ public class SubastaDAO {
 	public int getIDSubasta(){
 		return subastas.size()+1;
 	}
+	
+	public List<Subasta> getSubastas() {
+		return subastas;
+	}
 
 }

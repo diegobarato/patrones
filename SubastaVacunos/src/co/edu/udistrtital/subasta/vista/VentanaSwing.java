@@ -11,6 +11,8 @@ import javax.swing.border.EmptyBorder;
 
 import co.edu.udistrtital.subasta.control.ControlCentral;
 import co.edu.udistrtital.subasta.control.gestor.GestorProductos;
+import co.edu.udistrtital.subasta.control.gestor.GestorSubastas;
+import co.edu.udistrtital.subasta.control.peticiones.PeticionCrearOferta;
 import co.edu.udistrtital.subasta.control.peticiones.PeticionCrearProducto;
 
 public class VentanaSwing extends JFrame {
@@ -18,6 +20,7 @@ public class VentanaSwing extends JFrame {
 	private JPanel contentPane;
 	private ControlCentral control;
 	private GestorProductos gestorProductos;
+	private GestorSubastas gestorSubastas;
 
 	/**
 	 * Create the frame.
@@ -67,9 +70,23 @@ public class VentanaSwing extends JFrame {
 		});
 		btnActualizarSemoviente.setBounds(300, 154, 142, 23);
 		contentPane.add(btnActualizarSemoviente);
+		
+		JButton btnOfertar = new JButton("Ofertar");
+		btnOfertar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorSubastas.setPeticion(new PeticionCrearOferta());
+				gestorSubastas.procesarPeticion();
+			}
+		});
+		btnOfertar.setBounds(10, 100, 135, 23);
+		contentPane.add(btnOfertar);
 	}
 	
 	public void setGestorProductos(GestorProductos gestor){
 		gestorProductos = gestor;
+	}
+	
+	public void setGestorSubastas(GestorSubastas gestorSubastas) {
+		this.gestorSubastas = gestorSubastas;
 	}
 }

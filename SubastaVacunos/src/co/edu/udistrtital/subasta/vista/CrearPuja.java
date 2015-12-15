@@ -87,8 +87,6 @@ public class CrearPuja extends JDialog {
 			enviarDatos.setActionCommand("OK");
 			buttonPane.add(enviarDatos);
 			getRootPane().setDefaultButton(enviarDatos);
-			
-
 		}
 	}
 

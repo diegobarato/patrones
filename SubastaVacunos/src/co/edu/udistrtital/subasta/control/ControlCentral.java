@@ -3,10 +3,9 @@ package co.edu.udistrtital.subasta.control;
 import java.awt.EventQueue;
 
 import co.edu.udistrtital.subasta.control.gestor.GestorProductos;
+import co.edu.udistrtital.subasta.control.gestor.GestorSubastas;
 import co.edu.udistrtital.subasta.dao.UsuarioDAO;
 import co.edu.udistrtital.subasta.dao.VacunoDAO;
-import co.edu.udistrtital.subasta.modelo.catalogo.Categoria;
-import co.edu.udistrtital.subasta.modelo.usuario.Usuario;
 import co.edu.udistrtital.subasta.vista.VentanaSwing;
 
 public class ControlCentral {
@@ -16,12 +15,14 @@ public class ControlCentral {
 //	private GestorUsuario gestorUsuarios;
 	private UsuarioDAO usuarioDAO;
 	private VacunoDAO vacunoDAO;
+	private GestorSubastas gestorSubastas;
 	
 	
 	
 	
 	public ControlCentral(){
 		gestorProductos = new GestorProductos("VACUNO");
+		gestorSubastas = new GestorSubastas();
 		usuarioDAO = UsuarioDAO.getInstancia();
 		vacunoDAO = VacunoDAO.getInstancia();
 		adicionarUsuariosIniciales();
@@ -52,6 +53,7 @@ public class ControlCentral {
 		public void run() {
 			vista = new VentanaSwing(controlCentral);
 			vista.setGestorProductos(gestorProductos);
+			vista.setGestorSubastas(gestorSubastas);
 			vista.setVisible(true);
 		}
 		

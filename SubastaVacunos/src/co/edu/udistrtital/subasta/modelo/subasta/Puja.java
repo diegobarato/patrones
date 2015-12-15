@@ -20,8 +20,9 @@ public class Puja extends Subasta {
 	
 	private List<Oferta> ofertas = new ArrayList<>();
 	
-	public Puja(Double precioInicial, Date fechaInicio, Date fechaTerminacion, Producto producto) {
+	public Puja(Integer idPuja, Double precioInicial, Date fechaInicio, Date fechaTerminacion, Producto producto) {
 		super();
+		this.idPuja = idPuja;
 		this.precioInicial = precioInicial;
 		this.fechaInicio = fechaInicio;
 		this.fechaTerminacion = fechaTerminacion;
@@ -34,7 +35,12 @@ public class Puja extends Subasta {
 	}
 
 	public Oferta getUltimaOferta() {
-		return ofertas.get(ofertas.size()-1);
+		try {
+			return ofertas.get(ofertas.size()-1);
+		} catch (Exception e) {
+			return null;
+		}
+		
 	}
 	
 	public List<Oferta> getOfertas() {

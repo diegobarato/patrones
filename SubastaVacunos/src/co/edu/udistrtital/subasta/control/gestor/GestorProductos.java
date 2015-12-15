@@ -54,6 +54,7 @@ public class GestorProductos {
 		return categoriasAMostrar;
 	}
 	
+	
 	public void procesarPeticion(){
 		peticion.procesarPeticion();
 	}
