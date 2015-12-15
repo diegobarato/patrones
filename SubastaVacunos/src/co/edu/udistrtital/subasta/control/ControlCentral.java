@@ -10,6 +10,7 @@ public class ControlCentral {
 	private VentanaSwing vista;
 	private GestorProductos gestorProductos;
 	
+	
 	public ControlCentral(){
 		gestorProductos = new GestorProductos("VACUNO");
 		EventQueue.invokeLater(new InvocarVentana(this));		
