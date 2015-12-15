@@ -53,7 +53,4 @@ public class Categoria extends Catalogo {
 		this.nombre = nombre;
 	}
 
-	
-	
-	
 }
