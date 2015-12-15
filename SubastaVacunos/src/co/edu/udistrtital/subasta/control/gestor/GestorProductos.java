@@ -11,6 +11,7 @@ import co.edu.udistrtital.subasta.dao.VacunoDAO;
 import co.edu.udistrtital.subasta.modelo.catalogo.Categoria;
 import co.edu.udistrtital.subasta.modelo.catalogo.Producto;
 import co.edu.udistrtital.subasta.modelo.catalogo.Vacuno;
+import co.edu.udistrtital.subasta.modelo.usuario.Usuario;
 
 public class GestorProductos {
 	
@@ -49,8 +50,17 @@ public class GestorProductos {
 		return categoriasAMostrar;
 	}
 	
-	public List<String> getUsuarios(){
-		return usuarioDAO.getNombresUsuarios();
+	public List<ComboItemDTO> getUsuarios(){
+		Iterator<Usuario> usuarios=usuarioDAO.getUsuarios().iterator();
+		List<ComboItemDTO> usuariosAMostrar = new ArrayList<ComboItemDTO>();
+		while (usuarios.hasNext()) {
+			Usuario usuario = (Usuario) usuarios.next();
+			ComboItemDTO item = new ComboItemDTO();
+			item.setKey(String.valueOf(usuario.getCodigo()));
+			item.setValue(usuario.getNombre());
+			usuariosAMostrar.add(item);
+		}
+		return usuariosAMostrar;
 	}
 	
 	public void procesarPeticion(){

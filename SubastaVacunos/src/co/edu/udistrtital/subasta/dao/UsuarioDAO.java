@@ -33,25 +33,19 @@ public class UsuarioDAO {
 		return usuarios.get(codigo-1);
 	}
 	
-	public List<String> getNombresUsuarios(){
-		Iterator<Usuario> it = usuarios.iterator();
-		List<String> listaNombres = new ArrayList<String>();
-		while (it.hasNext()) {
-			Usuario usuario = (Usuario) it.next();
-			listaNombres.add(usuario.getNombre());
-		}
-		return listaNombres;
+	public List<Usuario> getUsuarios(){
+		return usuarios;
 	}
 	
-	public List<String> getNombresUsuariosMenosUno(Usuario propietario){
+	public List<Usuario> getUsuariosMenosUno(Usuario propietario){
 		Iterator<Usuario> it = usuarios.iterator();
-		List<String> listaNombres = new ArrayList<String>();
+		List<Usuario> usuariosMenosUno = new ArrayList<Usuario>();
 		while (it.hasNext()) {
 			Usuario usuario = (Usuario) it.next();
 			if(propietario.getCodigo()!=usuario.getCodigo())
-				listaNombres.add(usuario.getNombre());
+				usuariosMenosUno.add(usuario);
 		}
-		return listaNombres;
+		return usuariosMenosUno;
 	}
 	
 	public int getSiguienteCodigoUsuario(){

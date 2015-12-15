@@ -11,6 +11,7 @@ import javax.swing.border.TitledBorder;
 
 import co.edu.udistrtital.subasta.control.dto.ComboItemDTO;
 import co.edu.udistrtital.subasta.control.gestor.GestorProductos;
+import co.edu.udistrtital.subasta.modelo.catalogo.Categoria;
 
 import javax.swing.JLabel;
 import java.awt.GridLayout;
@@ -27,6 +28,11 @@ public class CrearSemoviente extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField nombre;
 	private JTextField precio;
+	private JComboBox categoria;
+	private JComboBox propietario;
+	private JButton okButton;
+	private JButton btnIniciarPuja;
+	private JButton cancelButton;
 
 	/**
 	 * Create the dialog.
@@ -64,7 +70,7 @@ public class CrearSemoviente extends JDialog {
 			JLabel lblNewLabel_2 = new JLabel("Categor\u00EDa");
 			panel.add(lblNewLabel_2);
 			
-			JComboBox categoria = new JComboBox();
+			categoria = new JComboBox();
 			Iterator<ComboItemDTO> categoriaItems= gestorProductos.getCategorias().iterator();
 			while (categoriaItems.hasNext()) {
 				ComboItemDTO comboItemDTO = (ComboItemDTO) categoriaItems.next();
@@ -75,10 +81,10 @@ public class CrearSemoviente extends JDialog {
 			JLabel lblNewLabel_3 = new JLabel("Propietario");
 			panel.add(lblNewLabel_3);
 			
-			JComboBox propietario = new JComboBox();
-			Iterator<String> propietariosItems= gestorProductos.getUsuarios().iterator();
+			propietario = new JComboBox();
+			Iterator<ComboItemDTO> propietariosItems= gestorProductos.getUsuarios().iterator();
 			while (propietariosItems.hasNext()) {
-				String propietarioItem = (String) propietariosItems.next();
+				ComboItemDTO propietarioItem = (ComboItemDTO) propietariosItems.next();
 				propietario.addItem(propietarioItem);
 			}
 			panel.add(propietario);
@@ -87,24 +93,26 @@ public class CrearSemoviente extends JDialog {
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("Insertar Animal");
-				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
 			
-			JButton btnIniciarPuja = new JButton("Iniciar puja");
+			okButton = new JButton("Insertar Animal");
+			okButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					gestorProductos.crearProducto(nombre.getText(), Double.parseDouble(precio.getText()), ((ComboItemDTO)categoria.getSelectedItem()).getKey(), ((ComboItemDTO)propietario.getSelectedItem()).getKey());
+					btnIniciarPuja.setEnabled(true);
+					okButton.setEnabled(false);
+				}
+			});
+			okButton.setActionCommand("OK");
+			buttonPane.add(okButton);
+			getRootPane().setDefaultButton(okButton);
+			
+			btnIniciarPuja = new JButton("Iniciar puja");
+			btnIniciarPuja.setEnabled(false);
 			buttonPane.add(btnIniciarPuja);
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
+			
+			cancelButton = new JButton("Cancel");
+			cancelButton.setActionCommand("Cancel");
+			buttonPane.add(cancelButton);
 		}
 	}
 }

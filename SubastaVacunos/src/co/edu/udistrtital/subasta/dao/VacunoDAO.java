@@ -1,6 +1,7 @@
 package co.edu.udistrtital.subasta.dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import co.edu.udistrtital.subasta.modelo.catalogo.Categoria;
@@ -31,6 +32,11 @@ public class VacunoDAO {
 	
 	public void adicionarProducto(Producto producto){
 		productos.add(producto);
+		
+		for (Iterator iterator = productos.iterator(); iterator.hasNext();) {
+			Producto producto1 = (Producto) iterator.next();
+			System.out.println("Producto: "+producto1.getNombre());
+		}
 	}
 	
 	public void adicionarCategoria(String nombreCategoria){
