@@ -7,7 +7,7 @@ import co.edu.udistrtital.subasta.vista.CrearUsuario;
 
 public class PeticionCrearUsuario implements IEstrategiaPeticion {
 	
-	CrearUsuario vista ;
+	private CrearUsuario vista ;
 
 	@Override
 	public void procesarPeticion() {

@@ -20,4 +20,8 @@ public class BuscarEntidad {
 			categoria.imprimirCatalogo();
 		}
 	}
+	
+	public String getNombreProducto(int codigoProducto){
+		return vacunoDAO.getProducto(codigoProducto).getNombre();
+	}
 }

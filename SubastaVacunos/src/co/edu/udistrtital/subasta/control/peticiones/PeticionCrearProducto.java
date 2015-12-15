@@ -6,7 +6,7 @@ import co.edu.udistrtital.subasta.vista.CrearSemoviente;
 
 public class PeticionCrearProducto implements IEstrategiaPeticion {
 	
-	CrearSemoviente vista;
+	private CrearSemoviente vista;
 
 	@Override
 	public void procesarPeticion() {

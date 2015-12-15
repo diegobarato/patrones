@@ -6,7 +6,7 @@ import co.edu.udistrtital.subasta.vista.CrearPuja;
 
 public class PeticionCrearPuja implements IEstrategiaPeticion {
 	
-	CrearPuja vista;
+	private CrearPuja vista;
 
 	@Override
 	public void procesarPeticion() {

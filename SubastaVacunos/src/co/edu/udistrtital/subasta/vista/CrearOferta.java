@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import co.edu.udistrtital.subasta.control.dto.ComboItemDTO;
 import co.edu.udistrtital.subasta.control.gestor.GestorProductos;
 import co.edu.udistrtital.subasta.control.gestor.GestorSubastas;
+import co.edu.udistrtital.subasta.control.peticiones.PeticionCrearOfertaEnviar;
 
 public class CrearOferta extends JDialog {
 
@@ -92,13 +93,14 @@ public class CrearOferta extends JDialog {
 			resultado = new JLabel(" ");
 			buttonPane.add(resultado, BorderLayout.CENTER);
 
-			JButton cancelButton = new JButton("Ofertar");
-			cancelButton.addActionListener(new ActionListener() {
+			JButton ofertarButton = new JButton("Ofertar");
+			ofertarButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					gestorSubastas.setPeticion(new PeticionCrearOfertaEnviar(idProductoSeleccionado));
+					gestorSubastas.procesarPeticion();
 				}
 			});
-			cancelButton.setActionCommand("Cancel");
-			buttonPane.add(cancelButton, BorderLayout.EAST);
+			buttonPane.add(ofertarButton, BorderLayout.EAST);
 		}
 	}
 }
