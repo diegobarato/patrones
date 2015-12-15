@@ -2,11 +2,11 @@ package co.edu.udistrtital.subasta.control.peticiones;
 
 import java.awt.EventQueue;
 
-import co.edu.udistrtital.subasta.vista.CrearOferta2;
+import co.edu.udistrtital.subasta.vista.CrearOferta;
 
 public class PeticionCrearOferta implements IEstrategiaPeticion {
 	
-	CrearOferta2 vista = new CrearOferta2();
+	CrearOferta vista;
 
 	@Override
 	public void procesarPeticion() {
@@ -18,7 +18,7 @@ public class PeticionCrearOferta implements IEstrategiaPeticion {
 
 		@Override
 		public void run() {
-			vista = new CrearOferta2();
+			vista = new CrearOferta();
 			vista.setVisible(true);
 		}
 	}

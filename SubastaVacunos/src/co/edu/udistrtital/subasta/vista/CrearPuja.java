@@ -41,8 +41,8 @@ public class CrearPuja extends JDialog {
 		panel.setBounds(0, 0, 323, 26);
 		contentPanel.add(panel);
 		
-		JLabel lblCrearPuja = new JLabel("Crear Puja");
-		lblCrearPuja.setFont(new Font("Tahoma", Font.BOLD, 12));
+		JLabel lblCrearPuja = new JLabel("Habilitar semoviente para puja");
+		lblCrearPuja.setFont(new Font("Verdana", Font.BOLD, 12));
 		panel.add(lblCrearPuja);
 		
 		JLabel lblNewLabel = new JLabel("Precio inicial de la puja");
@@ -87,7 +87,7 @@ public class CrearPuja extends JDialog {
 						calFin.set(Calendar.HOUR_OF_DAY, Integer.parseInt(fin[0]));
 						calFin.set(Calendar.MINUTE, Integer.parseInt(fin[1]));
 						gestorSubastas.crearSubasta( Double.valueOf(precioInicial.getText()), calInicio.getTime(), calFin.getTime());
-						
+						dispose();
 					}
 				});
 				buttonPane.add(okButton);
@@ -100,7 +100,6 @@ public class CrearPuja extends JDialog {
 					}
 				});
 				buttonPane.add(cancelButton);
-				
 		}
 	}
 }
