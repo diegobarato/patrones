@@ -35,9 +35,6 @@ public class GestorProductos {
 		vacunoDAO.adicionarProducto(producto);
 		vacunoDAO.categorizarProducto(producto, categoria);	
 		
-		BuscarEntidad buscarEntidad = new BuscarEntidad();
-		buscarEntidad.imprimirCatalogo();
-		
 		return producto.getIdProducto();
 	}
 	

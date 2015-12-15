@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import co.edu.udistrtital.subasta.control.gestor.GestorProductos;
 import co.edu.udistrtital.subasta.control.gestor.GestorSubastas;
+import co.edu.udistrtital.subasta.control.gestor.GestorUsuarios;
 import co.edu.udistrtital.subasta.dao.UsuarioDAO;
 import co.edu.udistrtital.subasta.dao.VacunoDAO;
 import co.edu.udistrtital.subasta.vista.VentanaSwing;
@@ -12,7 +13,7 @@ public class ControlCentral {
 
 	private VentanaSwing vista;
 	private GestorProductos gestorProductos;
-//	private GestorUsuario gestorUsuarios;
+	private GestorUsuarios gestorUsuarios;
 	private UsuarioDAO usuarioDAO;
 	private VacunoDAO vacunoDAO;
 	private GestorSubastas gestorSubastas;
@@ -23,6 +24,8 @@ public class ControlCentral {
 	public ControlCentral(){
 		gestorProductos = new GestorProductos("VACUNO");
 		gestorSubastas = new GestorSubastas();
+		gestorUsuarios = new GestorUsuarios();
+		
 		usuarioDAO = UsuarioDAO.getInstancia();
 		vacunoDAO = VacunoDAO.getInstancia();
 		adicionarUsuariosIniciales();
@@ -54,6 +57,7 @@ public class ControlCentral {
 			vista = new VentanaSwing(controlCentral);
 			vista.setGestorProductos(gestorProductos);
 			vista.setGestorSubastas(gestorSubastas);
+			vista.setGestorUsuarios(gestorUsuarios);
 			vista.setVisible(true);
 		}
 		

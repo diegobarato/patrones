@@ -5,12 +5,15 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.edu.udistrtital.subasta.control.dto.ComboItemDTO;
+import co.edu.udistrtital.subasta.control.peticiones.IEstrategiaPeticion;
 import co.edu.udistrtital.subasta.dao.UsuarioDAO;
 import co.edu.udistrtital.subasta.modelo.usuario.Usuario;
 
 public class GestorUsuarios {
 	
 	private UsuarioDAO usuarioDAO;
+	
+	private IEstrategiaPeticion peticion;
 	
 	public GestorUsuarios(){
 		usuarioDAO = UsuarioDAO.getInstancia();
@@ -32,4 +35,19 @@ public class GestorUsuarios {
 	public void crearUsuario(String nombreUsuario){
 		usuarioDAO.adicionarUsuario(nombreUsuario);
 	}
+	
+	public void procesarPeticion(){
+		peticion.procesarPeticion();
+	}
+
+	public IEstrategiaPeticion getPeticion() {
+		return peticion;
+	}
+
+	public void setPeticion(IEstrategiaPeticion peticion) {
+		this.peticion = peticion;
+	}
+	
+	
+	
 }

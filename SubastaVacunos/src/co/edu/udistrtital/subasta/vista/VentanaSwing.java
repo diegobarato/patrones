@@ -10,10 +10,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import co.edu.udistrtital.subasta.control.ControlCentral;
+import co.edu.udistrtital.subasta.control.gestor.BuscarEntidad;
 import co.edu.udistrtital.subasta.control.gestor.GestorProductos;
 import co.edu.udistrtital.subasta.control.gestor.GestorSubastas;
+import co.edu.udistrtital.subasta.control.gestor.GestorUsuarios;
 import co.edu.udistrtital.subasta.control.peticiones.PeticionCrearOferta;
 import co.edu.udistrtital.subasta.control.peticiones.PeticionCrearProducto;
+import co.edu.udistrtital.subasta.control.peticiones.PeticionCrearUsuario;
 
 public class VentanaSwing extends JFrame {
 
@@ -21,6 +24,7 @@ public class VentanaSwing extends JFrame {
 	private ControlCentral control;
 	private GestorProductos gestorProductos;
 	private GestorSubastas gestorSubastas;
+	private GestorUsuarios gestorUsuarios;
 
 	/**
 	 * Create the frame.
@@ -59,13 +63,20 @@ public class VentanaSwing extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnImprimirCatlogo = new JButton("Imprimir cat\u00E1logo");
+		btnImprimirCatlogo .addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BuscarEntidad buscarEntidad = new BuscarEntidad();
+				buscarEntidad.imprimirCatalogo();
+			}
+		});
 		btnImprimirCatlogo.setBounds(155, 154, 135, 23);
 		contentPane.add(btnImprimirCatlogo);
 		
-		JButton btnActualizarSemoviente = new JButton("Actualizar semoviente");
+		JButton btnActualizarSemoviente = new JButton("Crear usuario");
 		btnActualizarSemoviente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				gestorUsuarios.setPeticion(new PeticionCrearUsuario());
+				gestorUsuarios.procesarPeticion();
 			}
 		});
 		btnActualizarSemoviente.setBounds(300, 154, 142, 23);
@@ -88,5 +99,9 @@ public class VentanaSwing extends JFrame {
 	
 	public void setGestorSubastas(GestorSubastas gestorSubastas) {
 		this.gestorSubastas = gestorSubastas;
+	}
+	
+	public void setGestorUsuarios(GestorUsuarios gestorUsuarios) {
+		this.gestorUsuarios = gestorUsuarios;
 	}
 }
